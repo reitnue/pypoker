@@ -25,7 +25,5 @@ class Poker():
 
         self.pot = 0
 
-    def score_hand(self):
+    def score_hand(self, player_id):
         pass
-
-    # def 

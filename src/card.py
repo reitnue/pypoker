@@ -7,6 +7,7 @@ class Card:
     def __init__(self, rank, suit):
         self.rank = rank
         self.suit = suit
+    
     def __str__ (self):
         if self.rank == 14:
             rank = 'A'
@@ -19,6 +20,9 @@ class Card:
         else:
             rank = self.rank
         return str(rank) + self.suit
+
+    def __repr__(self):
+        return self.__str__()
 
     def __eq__ (self, other):
         return (self.rank == other.rank)
@@ -37,3 +41,9 @@ class Card:
 
     def __ge__ (self, other):
         return (self.rank >= other.rank)
+
+    def get_rank(self):
+        return self.rank
+
+    def get_suit(self):
+        return self.suit

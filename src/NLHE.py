@@ -1,6 +1,8 @@
 import sys
 
-from deck import Deck
+# from deck import Deck
+from card import SUITS, RANKS
+from card import Card
 from poker import Poker
 '''
 1. Game Play first
@@ -14,20 +16,13 @@ class NLHE(Poker):
     players: list of player objects - starts with small blind...
     '''
     def __init__(self, players, sb=1, bb=2):
-        super().__init__(players)
+        super(NLHE, self).__init__(players)
         self.community = []
         
         self.cards_per_hand = 2
 
         self.small_blind = sb
         self.big_blind = bb
-
-    # '''
-    # player: id for player for self.hands
-    # community: community cards
-    # '''
-    # def score_hand(self, player):
-    #     pass
 
     def play(self):
         # deal hands
@@ -62,7 +57,8 @@ class NLHE(Poker):
         return
 
 if __name__ == '__main__':
-    game = NLHE(list(range(2)))
+    num = 5
+    game = NLHE(list(range(num)))
     game.play()
     game.show_hands()
     game.show_community()

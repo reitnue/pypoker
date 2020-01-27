@@ -1,1 +1,10 @@
 One component is hard in python - that is keeping properties/fields private so that there is no way for users to cheat. -> Java or C++
+
+Nah - trust users for now...
+
+Hands:
+Straight
+Flush
+High Card
+Pair, trips, 2 pair, quads
+full House
