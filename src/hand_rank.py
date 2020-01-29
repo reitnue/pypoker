@@ -107,19 +107,21 @@ class Hand_Rank():
                 flush_suit = suit
 
         for high in straight_highs[::-1]: # in reverse order
+            temp_straight_flush = True
             if high == 5:
-                STRAIGHT_FLUSH |= Card(14, flush_suit) in cards
+                temp_straight_flush &= Card(14, flush_suit) in cards
                 for i in range(2, 6):
-                    STRAIGHT_FLUSH |= Card(i, flush_suit) in cards
+                    temp_straight_flush &= Card(i, flush_suit) in cards
             else:
                 for i in range(high-4, high+1):
-                    STRAIGHT_FLUSH |= Card(i, flush_suit) in cards
+                    temp_straight_flush &= (Card(i, flush_suit) in cards)
 
-            if STRAIGHT_FLUSH:
+            if temp_straight_flush:
                 straight_flush_high = high
                 self.hand_rank = max(self.hand_rank, NLHE_HAND_RANKS['STRAIGHT_FLUSH'])
                 self.top_ranks = [high]
                 return
+
 
         for rank in RANKS[::-1]:
             if rank_dict[rank] == 4:
@@ -207,12 +209,11 @@ class Hand_Rank():
 
             return
 
-
     # run after score_hand
     def calculate_hand_value(self):
         self.value += self.hand_rank * (10**5)
         kickers = self.top_ranks + [0]*(5 - len(self.top_ranks))
-        for index, kicker in enumerate(kickers):
+        for index, kicker in enumerate(kickers[::-1]):
             self.value += kicker * (10 ** index)
 
     def __str__(self):

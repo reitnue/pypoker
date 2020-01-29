@@ -25,7 +25,7 @@ class Card:
         return self.__str__()
 
     def __eq__ (self, other):
-        return (self.rank == other.rank)
+        return (self.rank == other.rank) and (self.suit == other.suit)
 
     def __ne__ (self, other):
         return (self.rank != other.rank)
