@@ -15,6 +15,7 @@ if __name__ == '__main__':
                     "2C,3C,4C,5C,6C,10S,14H", # straight flush
                     "2C,3C,4C,5C,6H,10S,14C", # straight flush wrap arround
                     "2C,3C,2H,2S,2D,5C,8D", # quads
+                    "2H,11C,10D,8D,14D,12H,13D"
                  ]
     for cards_str in cards_strs:
         temp = Hand_Rank(parse_cards_str(cards_str))

@@ -1,15 +1,24 @@
 import sys
 
+FOLD = 0
+CHECK = 0
+CALL = 1
+RAISE = 2
+
 class NLHEPlayer():
-	def __init__(self, buyin):
-		self.stack = buyin
-		self.hole_cards = []
-		self.position = None
-		self.game = None # 1 game per player
+    def __init__(self, buyin):
+        self.stack = buyin
+        self.hole_cards = []
 
-	def sit_down(self, game):
-		if not self.game and self.game.add_player(player):
-			self.game = game
-		else:
-			sys.stderr.write("Already in a game\n")
+    def action(self, others, hand_round, position, community):
+        # return RAISE, 10
 
+        # get the amount you are raising/calling
+
+        return CALL, 0 # calls the bet
+
+    def pay(self, amount):
+        self.stack -= amount # error check
+
+    def receive(self, amount):
+        self.stack += amount # logging

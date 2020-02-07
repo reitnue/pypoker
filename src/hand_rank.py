@@ -96,7 +96,7 @@ class Hand_Rank():
         if rank_indicator_arr[-1] == 1 and sum(rank_indicator_arr[:4]) == 4:
             straight_highs.append(5)
 
-        for i in range(len(rank_indicator_arr) - 5):
+        for i in range(len(rank_indicator_arr) - 4):
             next_sum = sum(rank_indicator_arr[i:i+5])
             if next_sum == 5: # straight!
                 straight_highs.append(i+6)
@@ -145,11 +145,13 @@ class Hand_Rank():
 
         # trip, pair_ranks will already by sorted
         if not QUADS:
-            if len(trip_ranks) > 0:
+            if (TRIPS and PAIR) or (TRIPS and len(trip_ranks) > 1):
                 FULL_HOUSE = True
                 full_rank = trip_ranks[0]
-
-                other_rank = pair_ranks[0]
+                
+                if len(pair_ranks) > 0:
+                    other_rank = pair_ranks[0]
+                other_rank = 0
                 if len(trip_ranks) > 1:
                     other_rank = max(trip_ranks[1], other_rank)
 
@@ -168,7 +170,7 @@ class Hand_Rank():
             if straight_highs:
                 straight_high = straight_highs[-1]
                 self.hand_rank = max(self.hand_rank, NLHE_HAND_RANKS['STRAIGHT'])
-                self.top_ranks = straight_high
+                self.top_ranks = [straight_high]
                 return
 
         if not STRAIGHT:
@@ -218,6 +220,12 @@ class Hand_Rank():
 
     def __str__(self):
         return str(self.value) + ' - ' + NLHE_HAND_RANK_REPR[self.hand_rank] + ' ' + str(self.top_ranks)
+
+    def __int__(self):
+        return self.value
+
+    def __repr__(self):
+        return self.__str__()
 
     def __eq__ (self, other):
         return (self.value == other.value)

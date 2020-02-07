@@ -23,6 +23,9 @@ class Poker():
         self.hands = [[] for _ in players]
         self.folded = [0 for _ in players]
 
+        self.preflop = True
+        # money
+        self.bets = [0 for _ in players]
         self.pot = 0
 
     def score_hand(self, player_id):
